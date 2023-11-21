@@ -6,13 +6,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="se15.2" />
+        <module name="se15.2 (2) (hus.min)" />
+        <module name="se15.2 (1) (vnu.hus.min)" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="se15.2" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="se15.2" options="-parameters" />
+      <module name="se15.2 (1) (vnu.hus.min)" options="-parameters" />
+      <module name="se15.2 (2) (hus.min)" options="-parameters" />
     </option>
   </component>
 </project>
