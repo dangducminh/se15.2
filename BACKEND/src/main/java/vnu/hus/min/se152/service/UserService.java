@@ -1,7 +1,11 @@
 package vnu.hus.min.se152.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import vnu.hus.min.se152.model.User;
 import vnu.hus.min.se152.repository.UserRepository;
 
@@ -23,5 +27,16 @@ public class UserService {
      */
     public List<User> getAllUsers(){
         return userRepository.findAll();
+    }
+
+
+    /**
+     * This method adds a new user to the database.
+     *
+     * @param user The User object representing the new user.
+     * @return The User object after being added to the database.
+     */
+    public User addUser(User user) {
+        return userRepository.save(user);
     }
 }
