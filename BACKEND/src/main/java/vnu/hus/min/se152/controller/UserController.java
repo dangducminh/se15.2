@@ -35,4 +35,15 @@ public class UserController {
         User addedUser = userService.addUser(newUser);
         return new ResponseEntity<>(addedUser, HttpStatus.CREATED);
     }
+
+    @GetMapping("/get-user/{userId}")
+    public ResponseEntity<User> getUserById(@PathVariable Long userId) {
+        User user = userService.getUserById(userId);
+
+        if (user != null) {
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }
