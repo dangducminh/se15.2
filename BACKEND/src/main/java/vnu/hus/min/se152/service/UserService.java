@@ -49,4 +49,18 @@ public class UserService {
     public User getUserById(Long userId) {
         return userRepository.findById(userId).orElse(null);
     }
+
+    /**
+     * This method deletes a user from the database based on their ID.
+     *
+     * @param userId The ID of the user to be deleted.
+     * @return True if the user is successfully deleted, false otherwise.
+     */
+    public boolean deleteUserById(Long userId) {
+        if (userRepository.existsById(userId)) {
+            userRepository.deleteById(userId);
+            return true;
+        }
+        return false;
+    }
 }
