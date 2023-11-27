@@ -47,6 +47,7 @@ public class UserController {
         }
     }
 
+
     @DeleteMapping("/delete-user/{userId}")
     public ResponseEntity<String> deleteUserById(@PathVariable Long userId) {
         boolean deleted = userService.deleteUserById(userId);
@@ -57,4 +58,19 @@ public class UserController {
             return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
         }
     }
+
+    @PutMapping("/update-user/{userId}")
+    public ResponseEntity<User> updateUserById(@PathVariable Long userId, @RequestBody User updatedUser) {
+        User existingUser = userService.getUserById(userId);
+
+        if (existingUser != null) {
+            updatedUser.setId(userId);
+            User updatedUserResult = userService.updateUserById(userId, updatedUser);
+            return new ResponseEntity<>(updatedUserResult, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
 }

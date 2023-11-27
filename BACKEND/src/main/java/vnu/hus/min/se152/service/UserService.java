@@ -63,4 +63,21 @@ public class UserService {
         }
         return false;
     }
+
+    /**
+     * This method updates a user in the database based on their ID.
+     *
+     * @param userId The ID of the user to be updated.
+     * @param updatedUser The updated User object.
+     * @return The User object after being updated, or null if the user with the provided ID is not found.
+     */
+    public User updateUserById(Long userId, User updatedUser) {
+        if (userRepository.existsById(userId)) {
+            updatedUser.setId(userId); // Ensure the ID of the updated user is set to the existing ID
+            return userRepository.save(updatedUser);
+        }
+        return null; // User with the provided ID not found
+    }
+
+
 }
