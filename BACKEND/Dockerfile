@@ -1,4 +1,7 @@
-FROM openjdk:oraclelinux8
-COPY target/se15.2-0.0.1-SNAPSHOT.jar se15.2-0.0.1-SNAPSHOT.jar
-ENTRYPOINT ["java","-jar","se15.2-0.0.1-SNAPSHOT.jar"]
-EXPOSE 8080
+#FROM jboss/wildfly.jdk8:16.0.0.Final
+USER root
+ADD target/ /opt/jboss/wildfly/standalone/deployments/
+RUN rm -rf /etc/localtime
+RUN ln -s /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
+RUN /opt/jboss/wildfly/bin/add-user.sh admin admin --silent
+CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
