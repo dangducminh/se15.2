@@ -49,4 +49,35 @@ public class UserService {
     public User getUserById(Long userId) {
         return userRepository.findById(userId).orElse(null);
     }
+
+    /**
+     * This method deletes a user from the database based on their ID.
+     *
+     * @param userId The ID of the user to be deleted.
+     * @return True if the user is successfully deleted, false otherwise.
+     */
+    public boolean deleteUserById(Long userId) {
+        if (userRepository.existsById(userId)) {
+            userRepository.deleteById(userId);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * This method updates a user in the database based on their ID.
+     *
+     * @param userId The ID of the user to be updated.
+     * @param updatedUser The updated User object.
+     * @return The User object after being updated, or null if the user with the provided ID is not found.
+     */
+    public User updateUserById(Long userId, User updatedUser) {
+        if (userRepository.existsById(userId)) {
+            updatedUser.setId(userId); // Ensure the ID of the updated user is set to the existing ID
+            return userRepository.save(updatedUser);
+        }
+        return null; // User with the provided ID not found
+    }
+
+
 }
