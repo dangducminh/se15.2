@@ -1,11 +1,8 @@
 package vnu.hus.min.se152.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import vnu.hus.min.se152.logging.Logging;
 import vnu.hus.min.se152.model.User;
 import vnu.hus.min.se152.repository.UserRepository;
 
@@ -25,6 +22,7 @@ public class UserService {
      * this function query all user from database
      * @return list all user
      */
+    @Logging
     public List<User> getAllUsers(){
         return userRepository.findAll();
     }
@@ -36,6 +34,7 @@ public class UserService {
      * @param user The User object representing the new user.
      * @return The User object after being added to the database.
      */
+    @Logging
     public User addUser(User user) {
         return userRepository.save(user);
     }
@@ -46,6 +45,7 @@ public class UserService {
      * @param userId The ID of the user to be retrieved.
      * @return The User object associated with the provided ID, or null if not found.
      */
+    @Logging
     public User getUserById(Long userId) {
         return userRepository.findById(userId).orElse(null);
     }
@@ -56,6 +56,7 @@ public class UserService {
      * @param userId The ID of the user to be deleted.
      * @return True if the user is successfully deleted, false otherwise.
      */
+    @Logging
     public boolean deleteUserById(Long userId) {
         if (userRepository.existsById(userId)) {
             userRepository.deleteById(userId);
@@ -71,6 +72,7 @@ public class UserService {
      * @param updatedUser The updated User object.
      * @return The User object after being updated, or null if the user with the provided ID is not found.
      */
+    @Logging
     public User updateUserById(Long userId, User updatedUser) {
         if (userRepository.existsById(userId)) {
             updatedUser.setId(userId); // Ensure the ID of the updated user is set to the existing ID
