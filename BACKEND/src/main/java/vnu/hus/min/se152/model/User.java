@@ -30,4 +30,14 @@ public class User {
 
     @Column
     private String salary;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", sex='" + sex + '\'' +
+                ", salary='" + salary + '\'' +
+                '}';
+    }
 }
