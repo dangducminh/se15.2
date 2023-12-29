@@ -25,16 +25,20 @@ public class Log {
     public Object DefineLog(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         long start = System.currentTimeMillis();
         Object[] args = proceedingJoinPoint.getArgs();
-        String messageLog = "Method name %s\nwith params:\n%sresponse:\n%s\ntook: %sms";
+        String messageLog = "request: %s; with params:%s";
         StringBuilder listParams = new StringBuilder();
-        for (Object arg : args){
-            listParams.append(arg.getClass()).append(":");
-            listParams.append(arg).append("\n");
-        }
         if (listParams.length()==0) listParams.append("empty");
+        else
+            for (Object arg : args){
+                listParams.append(arg.getClass()).append(":");
+                listParams.append(arg).append(", ");
+            }
+        //log request
+        log.info(String.format(messageLog,proceedingJoinPoint.getSignature().toLongString(),listParams));
         Object object = proceedingJoinPoint.proceed();
         long end = System.currentTimeMillis();
-        log.info(String.format(messageLog,proceedingJoinPoint.getSignature(),listParams,object.toString(),(end-start)));
+            //log response
+        log.info(String.format("response: %s; took: %sms",object.toString(),(end-start)));
         return object;
     }
 

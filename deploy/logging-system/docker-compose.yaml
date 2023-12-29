@@ -17,6 +17,7 @@ services:
     command: -f /etc/logstash/conf.d/
     volumes:
       - ./volumes/logstash/:/etc/logstash/conf.d/
+      - ./logs/:/var/log/
     ports:
       - "9999:9999"
     environment:
@@ -32,9 +33,3 @@ services:
       - "5601:5601"
     depends_on:
       - elasticsearch
-#  app:
-#    build: .
-#    ports:
-#      - "8080:8080"
-#    links:
-#      - logstash
