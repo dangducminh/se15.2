@@ -19,10 +19,8 @@ jobs:
           java-version: '8'
           distribution: 'adopt'
           cache: maven
-      - name: check working directory
-        run: ls
       - name: move to working directory
-        run: cd /BACKEND
+        run: cd /home/runner/work/se15.2/se15.2/BACKEND
       - name: check working directory
         run: pwd
       - name: Build with Maven
