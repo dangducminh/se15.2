@@ -19,8 +19,10 @@ jobs:
           java-version: '8'
           distribution: 'adopt'
           cache: maven
-      - name: move tp working directory
-        run: cd /BACKEND/
+      - name: check working directory
+        run: pwd
+      - name: move to working directory
+        run: cd BACKEND
       - name: Build with Maven
         run: mvn clean test package
 
