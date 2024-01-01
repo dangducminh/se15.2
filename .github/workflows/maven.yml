@@ -24,7 +24,7 @@ jobs:
       - name: check working directory
         run: pwd
       - name: check working directory
-        run: ls
+        run: ll
       - name: Build with Maven
         run: mvn clean test package
 
