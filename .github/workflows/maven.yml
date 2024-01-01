@@ -20,9 +20,11 @@ jobs:
           distribution: 'adopt'
           cache: maven
       - name: move to working directory
-        run: cd /home/runner/work/se15.2/se15.2/BACKEND
+        run: cd /home/runner/work/se15.2/BACKEND
       - name: check working directory
         run: pwd
+      - name: check working directory
+        run: ls
       - name: Build with Maven
         run: mvn clean test package
 
