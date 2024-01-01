@@ -19,12 +19,11 @@ jobs:
           java-version: '8'
           distribution: 'adopt'
           cache: maven
-      - name: move to working directory
-        run: cd /home/runner/work/se15.2/se15.2/deploy/
-      - name: check working directory
-        run: pwd
-      - name: check working directory
-        run: ll
+      - name: Move to backend directory
+        run: |
+          cd backend
+          pwd 
+          ls  
       - name: Build with Maven
         run: mvn clean test package
 
