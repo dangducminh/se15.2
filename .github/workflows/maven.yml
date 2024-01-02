@@ -23,6 +23,8 @@ jobs:
         run: |
           cd BACKEND
           mvn clean test package
+      - name: Build Docker image
+        run: docker build -t my-docker-username/vnu-hus-min-se15:$BUILD_NUMBER .
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     # - name: Update dependency graph
