@@ -9,7 +9,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: minhdd-H610M-S2-DDR4
 
     steps:
       - uses: actions/checkout@v3
