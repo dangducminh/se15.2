@@ -9,7 +9,7 @@ on:
 jobs:
   build:
 
-    runs-on: minhdd-H610M-S2-DDR4
+    runs-on: self-hosted
 
     steps:
       - uses: actions/checkout@v3
