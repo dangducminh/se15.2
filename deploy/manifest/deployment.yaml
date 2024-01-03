@@ -1,0 +1,102 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: se15-2-deployment
+  labels:
+    app: se15-2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: se15-2
+  template:
+    metadata:
+      labels:
+        app: se15-2
+        version: v1
+    spec:
+      containers:
+        - name: se15-2
+          image: minhdang2001/vnu-hus-min-se15:v28
+          # command:
+          #   - "-DMY_NODE_NAME "
+          imagePullPolicy: Always
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 55
+            periodSeconds: 5
+          resources:
+            # Specifying the resourses that we might need for our application
+            requests:
+              memory: "2048Mi"
+              cpu: "1500m"
+            limits:
+              memory: "2048Mi"
+              cpu: "2000m"
+          ports:
+            - containerPort: 8080
+#          volumeMounts:
+#            - name: se15-2
+#              mountPath: /opt/jboss/wildfly/standalone/log
+          securityContext:
+            allowPrivilegeEscalation: true
+            runAsUser: 0
+          env:
+            - name: MY_NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: MY_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: MY_LABEL_APP
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['app']
+            - name: MY_LABEL_VERSION
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['version']
+            - name: MY_POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: MY_POD_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.uid
+            - name: LIMITS_CPU
+              valueFrom:
+                resourceFieldRef:
+                  resource: limits.cpu
+                  divisor: 1m
+            - name: REQUESTS_CPU
+              valueFrom:
+                resourceFieldRef:
+                  resource: requests.cpu
+                  divisor: 1m
+            - name: LIMITS_MEMORY
+              valueFrom:
+                resourceFieldRef:
+                  resource: limits.memory
+                  divisor: 1Mi
+            - name: REQUESTS_MEMORY
+              valueFrom:
+                resourceFieldRef:
+                  resource: requests.memory
+                  divisor: 1Mi
+            - name: JAVA_OPTS
+              # value: -Xms64m -Xmx512m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m -Djava.net.preferIPv4Stack=true -Djboss.modules.system.pkgs=org.jboss.byteman -Djava.awt.headless=true -DMY_NODE_NAME=$MY_NODE_NAME -DMY_POD_NAME=$MY_POD_NAME -DMY_LABEL_APP=$MY_LABEL_APP -DMY_LABEL_VERSION=$MY_LABEL_VERSION -DIMAGE_NAME=$IMAGE_NAME -DMY_POD_NAMESPACE=$MY_POD_NAMESPACE -DMY_POD_ID=$MY_POD_ID -DLIMITS_CPU=$LIMITS_CPU -DLIMITS_MEMORY=$LIMITS_MEMORY -DREQUESTS_CPU=$REQUESTS_CPU -DREQUESTS_MEMORY=$REQUESTS_MEMORY -Dlog4j.configuration=/opt/jboss/wildfly/log4j.properties
+              value: -DMY_NODE_NAME=$MY_NODE_NAME -DMY_POD_NAME=$MY_POD_NAME -DMY_LABEL_APP=$MY_LABEL_APP -DMY_LABEL_VERSION=$MY_LABEL_VERSION -DIMAGE_NAME=$IMAGE_NAME -DMY_POD_NAMESPACE=$MY_POD_NAMESPACE -DMY_POD_ID=$MY_POD_ID -DLIMITS_CPU=$LIMITS_CPU -DLIMITS_MEMORY=$LIMITS_MEMORY -DREQUESTS_CPU=$REQUESTS_CPU -DREQUESTS_MEMORY=$REQUESTS_MEMORY -Dlog4j.configuration=/opt/jboss/wildfly/log4j.properties
+#      volumes:
+#        - name: se15-2
+#          hostPath:
+#            path: /var/log/transaction-staging
+

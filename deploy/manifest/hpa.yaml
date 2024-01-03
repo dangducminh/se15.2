@@ -1,0 +1,13 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: transaction-service-scaler-staging
+
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: se15-2-deployment
+  minReplicas: 1
+  maxReplicas: 1
+  targetCPUUtilizationPercentage: 80

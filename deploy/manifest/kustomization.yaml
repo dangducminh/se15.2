@@ -1,0 +1,39 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# Define configMap
+resources:
+  - deployment.yaml
+  - configMap_log4j.yaml
+  - service.yaml
+  - hpa.yaml
+
+# Define name manifest
+# namePrefix: lv24h-
+# nameSuffix: -staging
+
+# # Base of manifest
+# bases:
+#   - ../../base
+
+# Define namespace
+namespace: test
+
+# Replace DOCKER IMAGE
+patches:
+  - target:
+      kind: Deployment
+      name: se15-2-deployment
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/image
+        value: minhdang2001/vnu-hus-min-se15:v147_staging
+  - target:
+      kind: Deployment
+      name: se15-2-deployment
+    patch: |-
+      - op: add
+        path: "/spec/template/spec/containers/0/env/-"
+        value:
+          name: IMAGE_NAME
+          value: minhdang2001/vnu-hus-min-se15:v147_staging
