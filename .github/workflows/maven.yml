@@ -52,7 +52,7 @@ jobs:
     steps:
       - name: check dir
         run: |
-          cd deploy
+          cd deploy/manifest
           sed -i "s|minhdang2001/vnu-hus-min-se15:v.*|minhdang2001/vnu-hus-min-se15:v${{github.run_number}}|g" kustomization.yaml
      
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
