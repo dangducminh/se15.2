@@ -19,6 +19,7 @@ jobs:
           mvn clean test package
 
   build-docker-image:
+    needs: build-war
     runs-on: self-hosted
     steps:
       - name: Build Docker image
@@ -27,6 +28,7 @@ jobs:
           docker build -t minhdang2001/vnu-hus-min-se15:v${{github.run_number}} .
 
   push-docker-image:
+    needs: build-docker-image
     runs-on: self-hosted
     steps:
       - name: Login to Docker Hub
@@ -38,12 +40,14 @@ jobs:
         run: docker push minhdang2001/vnu-hus-min-se15:v${{github.run_number}}
 
   remove-docker-image:
+    needs: push-docker-image
     runs-on: self-hosted
     steps:
       - name: Push Docker image
         run: docker rmi minhdang2001/vnu-hus-min-se15:v${{github.run_number}}
 
   update-mainifest:
+    needs: remove-docker-image
     runs-on: self-hosted
     steps:
       - name: check dir
