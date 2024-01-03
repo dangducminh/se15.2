@@ -36,6 +36,21 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Push Docker image
         run: docker push minhdang2001/vnu-hus-min-se15:v${{github.run_number}}
+
+  remove-docker-image:
+    runs-on: self-hosted
+    steps:
+      - name: Push Docker image
+        run: docker rmi minhdang2001/vnu-hus-min-se15:v${{github.run_number}}
+
+  update-mainifest:
+    runs-on: self-hosted
+    steps:
+      - name: check dir
+        run: pwd
+      - name: get dir
+        run: ls
+        
                     
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
