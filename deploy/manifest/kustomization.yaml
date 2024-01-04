@@ -4,7 +4,6 @@ kind: Kustomization
 # Define configMap
 resources:
   - deployment.yaml
-  - configMap_log4j.yaml
   - service.yaml
   - hpa.yaml
 
