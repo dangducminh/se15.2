@@ -7,13 +7,6 @@ resources:
   - service.yaml
   - hpa.yaml
 
-# Define name manifest
-# namePrefix: lv24h-
-# nameSuffix: -staging
-
-# # Base of manifest
-# bases:
-#   - ../../base
 
 # Define namespace
 namespace: test
@@ -26,7 +19,7 @@ patches:
     patch: |-
       - op: replace
         path: /spec/template/spec/containers/0/image
-        value: minhdang2001/vnu-hus-min-se15:v147_staging
+        value: minhdang2001/vnu-hus-min-se15:v35
   - target:
       kind: Deployment
       name: se15-2-deployment
@@ -35,4 +28,4 @@ patches:
         path: "/spec/template/spec/containers/0/env/-"
         value:
           name: IMAGE_NAME
-          value: minhdang2001/vnu-hus-min-se15:v147_staging
+          value: minhdang2001/vnu-hus-min-se15:v35
