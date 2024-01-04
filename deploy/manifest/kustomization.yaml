@@ -19,7 +19,7 @@ patches:
     patch: |-
       - op: replace
         path: /spec/template/spec/containers/0/image
-        value: minhdang2001/vnu-hus-min-se15:v35
+        value: minhdang2001/vnu-hus-min-se15:v37
   - target:
       kind: Deployment
       name: se15-2-deployment
@@ -28,4 +28,4 @@ patches:
         path: "/spec/template/spec/containers/0/env/-"
         value:
           name: IMAGE_NAME
-          value: minhdang2001/vnu-hus-min-se15:v35
+          value: minhdang2001/vnu-hus-min-se15:v37
