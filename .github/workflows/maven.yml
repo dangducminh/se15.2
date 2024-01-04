@@ -56,8 +56,7 @@ jobs:
         run: |
           git add .
           git commit -m "update manifest v${{github.run_number}}"
-          git config pull.ff only
-          git pull origin dev --allow-unrelated-histories
+          git pull origin dev --allow-unrelated-histories --rebase
           git branch
           git push origin HEAD:dev 
      
