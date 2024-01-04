@@ -56,7 +56,8 @@ jobs:
         run: |
           git add .
           git commit -m "update manifest v${{github.run_number}}"
-          git push
+          git branch
+          git push origin HEAD:dev 
      
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     # - name: Update dependency graph
