@@ -17,7 +17,7 @@
                 <TimeBasedTriggeringPolicy interval="1" modulate="true" />
             </Policies>
         </RollingFile>
-        <Socket name="socket" host="${sys:logstash.host.name:-localhost}" port="${sys:logstash.port.number:-9999}" reconnectionDelayMillis="5000">
+        <Socket name="socket" host="${sys:logstash.host.name:-192.168.1.83}" port="${sys:logstash.port.number:-9999}" reconnectionDelayMillis="5000">
             <PatternLayout pattern="${defaultPattern}" />
         </Socket>
     </Appenders>
