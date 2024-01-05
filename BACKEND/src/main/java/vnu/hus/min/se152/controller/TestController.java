@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class TestController {
-    @GetMapping(value = "/hello-word")
+    @GetMapping(value = "/hello-world")
     public ResponseEntity<String> testApi(){
-        return new ResponseEntity<>("Hello World1", HttpStatus.OK);
+        return new ResponseEntity<>("Hello World2", HttpStatus.OK);
     }
 }
