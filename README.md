@@ -2,7 +2,7 @@
 
 # Setup project
 ## Setup environment
-### Version Java
+### Java
 This project use java 8 . Consequently, Java 8 must be installed.
 Refer to some tutorials below
 - [Vietnamese instructions for installation](https://hocjava.com/cai-dat-java-tren-windows-10/)
@@ -17,4 +17,12 @@ This project use Mysql. Refer to some tutorials below
 Or install it via Docker :
 
 `docker run --name mysql  -dp 3306:3306 -e MYSQL_ROOT_PASSWORD=root  mysql:5.7-oracle`
+
+### Logging
+Project logging system is ELK
+This project use Mysql. Refer to some tutorials below
+- [English document](https://www.techtarget.com/searchitoperations/definition/Elastic-Stack)
+Start ELK:
+- cd deploy/logging-system
+- docker compose up -d 
 
