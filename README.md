@@ -1,3 +1,5 @@
+[![Web Build Status](https://github.com/google/filament/workflows/Web/badge.svg)](https://github.com/dangducminh/se15.2/actions?query=workflow)
+
 # Setup project
 ## Setup environment
 ### Version Java
