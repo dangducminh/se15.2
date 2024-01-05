@@ -50,7 +50,7 @@ jobs:
         run: |
           cd deploy/manifest
           sed -i "s|minhdang2001/vnu-hus-min-se15:v.*|minhdang2001/vnu-hus-min-se15:v${{github.run_number}}|g" kustomization.yaml
-      - name: commit
+      - name: commit && push
         run: |
           git add .
           git commit -m "update manifest v${{github.run_number}}"
