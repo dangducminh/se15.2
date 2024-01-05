@@ -50,7 +50,6 @@ jobs:
         run: |
           cd deploy/manifest
           sed -i "s|minhdang2001/vnu-hus-min-se15:v.*|minhdang2001/vnu-hus-min-se15:v${{github.run_number}}|g" kustomization.yaml
-
       - name: commit
         run: |
           git remote set-url --push origin https://dangducminh:${{ secrets.ACCESS_TOKEN_GIT }}@github.com/dangducminh/se15.2
