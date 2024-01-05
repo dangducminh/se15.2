@@ -55,7 +55,6 @@ jobs:
           git remote set-url --push origin https://dangducminh:${{ secrets.ACCESS_TOKEN_GIT }}@github.com/dangducminh/se15.2
           git add .
           git commit -m "update manifest v${{github.run_number}}"
-      - name: push
           git pull origin dev --allow-unrelated-histories --rebase
           git push origin HEAD:dev
 
