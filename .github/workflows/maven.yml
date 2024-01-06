@@ -50,6 +50,13 @@ jobs:
         run: |
           cd deploy/manifest
           sed -i "s|minhdang2001/vnu-hus-min-se15:v.*|minhdang2001/vnu-hus-min-se15:v${{github.run_number}}|g" kustomization.yaml
+      - uses: oleksiyrudenko/gha-git-credentials@v2.1.1
+        with:
+          global: true
+          name: 'dangducminh'
+          email: 'dangducminh_t64@hus.edu.vn'
+          actor: 'dangducminh'
+          token: '${{ secrets.ACCESS_TOKEN_GIT }}'      
       - name: commit && push
         run: |
           git add .
