@@ -50,19 +50,12 @@ jobs:
         run: |
           cd deploy/manifest
           sed -i "s|minhdang2001/vnu-hus-min-se15:v.*|minhdang2001/vnu-hus-min-se15:v${{github.run_number}}|g" kustomization.yaml
-      - uses: oleksiyrudenko/gha-git-credentials@v2.1.1
-        with:
-          global: true
-          name: 'dangducminh'
-          email: 'dangducminh_t64@hus.edu.vn'
-          actor: 'dangducminh'
-          token: '${{ secrets.ACCESS_TOKEN_GIT }}'      
       - name: commit && push
         run: |
           git add .
           git commit -m "update manifest v${{github.run_number}}"
-          git remote set-url --push origin https://dangducminh:${{ secrets.ACCESS_TOKEN_GIT }}@github.com/dangducminh/se15.2
           git pull origin dev --allow-unrelated-histories --rebase
+          git remote set-url --push origin https://dangducminh:${{ secrets.ACCESS_TOKEN_GIT }}@github.com/dangducminh/se15.2
           git push origin HEAD:dev
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
